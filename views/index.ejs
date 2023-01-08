@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simple To Do List</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <!-- Main section for content being displayed -->
+    <body>
+        <h1>Todo List: </h1>
+        <!-- Un-ordered List where our todo items will appear -->
+        <ul class="todoItems">
+
+        <!-- Start a FOR loop to access all the objects in our 'data' array  -->
+        <% for(let i=0; i < items.length; i++) {%>
+            <!-- Completing task with a else/if conditional statement --> 
+            <li class="item">
+                <!-- Checks if the item is completed and applies a class of 'completed' which changes the styling if true -->
+                <% if(items[i].completed === true) {%>
+                    <span class='completed'><%= items[i].thing %></span>
+                <% }else{ %>
+                    <span><%= items[i].thing %></span>
+                <% } %>
+                <span class='fa fa-trash'></span> <!-- trash icon from library -->
+            </li>
+        <% } %>
+        </ul>
+
+        <!-- Header with a variable that counts uncompleted items -->
+        <h2>Left to do: <%= left %></h2>
+
+        <h2>Add A Todo:</h2>
+
+        <!-- Form for our new entries to our todo list -->
+        <form action="/addTodo" method="POST">                              <!-- Using the 'POST' method that goes to the '/addTodo' route  -->
+            <input type="text" placeholder="Thing To Do" name="todoItem">   <!-- Assign user input to the 'todoItem' so we can use it in our post method-->
+            <input type="submit">
+        </form>
+        
+        <script src='js/main.js'></script>
+    </body>
+</html>
